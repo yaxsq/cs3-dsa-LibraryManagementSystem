@@ -138,6 +138,7 @@ public class Library {
         bookCount++;
         System.out.println(bookCount);
         System.out.println("Library/addBooks()  added >" + book.toString());
+        System.out.println("TITLE >" + getBook(book.getTitle()).getTitle());
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
     }
