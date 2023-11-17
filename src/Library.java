@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Library {
 
@@ -133,36 +130,16 @@ public class Library {
 
         // updating genre
         switch (getGenre(genre)) {
-            case ScienceFiction:
-                this.genreList[0].add(book);
-                break;
-            case Fantasy:
-                this.genreList[1].add(book);
-                break;
-            case Mystery:
-                this.genreList[2].add(book);
-                break;
-            case Thriller:
-                this.genreList[3].add(book);
-                break;
-            case HistoricalFiction:
-                this.genreList[4].add(book);
-                break;
-            case Horror:
-                this.genreList[5].add(book);
-                break;
-            case Biography:
-                this.genreList[6].add(book);
-                break;
-            case Selfhelp:
-                this.genreList[7].add(book);
-                break;
-            case Romance:
-                this.genreList[8].add(book);
-                break;
-            case YoungAdult:
-                this.genreList[9].add(book);
-                break;
+            case ScienceFiction -> this.genreList[0].add(book);
+            case Fantasy -> this.genreList[1].add(book);
+            case Mystery -> this.genreList[2].add(book);
+            case Thriller -> this.genreList[3].add(book);
+            case HistoricalFiction -> this.genreList[4].add(book);
+            case Horror -> this.genreList[5].add(book);
+            case Biography -> this.genreList[6].add(book);
+            case Selfhelp -> this.genreList[7].add(book);
+            case Romance -> this.genreList[8].add(book);
+            case YoungAdult -> this.genreList[9].add(book);
         }
 
         // adding a random amount of reviews (Max 3)
@@ -173,7 +150,7 @@ public class Library {
 
         System.out.println("Library/addBooks()  added >" + book.toString());
         System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
-        System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[getGenre(genre).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
+        System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
     }
@@ -296,9 +273,6 @@ public class Library {
 
     /**
      * hashes the title and returns the book from the books hashTable
-     *
-     * @param title
-     * @return
      */
     public Book getBook(String title) {
         return books.get(calculateKey(title));
