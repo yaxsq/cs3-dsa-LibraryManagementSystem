@@ -11,7 +11,8 @@ public class Library {
     private Book[] latestList;
     private ArrayList<Book>[] genreList;            // 0-9 index where each is a genre. Genre is an enum
     //I do not know how to implement Heaptrees xd
-    private TreeSet<Book> Popular; // use Lab heaptree or learn treeset.
+    private TreeSet<Book> popular; // use Lab heaptree or learn treeset.
+    private ArrayList<Review> randomReviews;
     public int bookCount;
 
     /**
@@ -24,6 +25,7 @@ public class Library {
     public Library() {
         initializeLists();
         populateBooks();
+        populateRandomReviews();
         bookCount = 0;
         //Popular needs to be reformatted into the custom heaptree. Therefore I am not including it in the initialization now. -Abdur Rehman.
     }
@@ -32,12 +34,17 @@ public class Library {
         books = new Hashtable<>();
         genreList = new ArrayList[10];
         latestList = new Book[15];
+        randomReviews = new ArrayList<>();
 
         for (int i = 0; i < genreList.length; i++) {
             genreList[i] = new ArrayList<>();
         }
     }
 
+    /**
+     * reads the text file
+     * adds a new book to the lists
+     */
     private void populateBooks() {
         try {
             File file = new File("src/data/books.txt");
@@ -67,6 +74,29 @@ public class Library {
     }
 
     /**
+     * reads reviews from a text file and fills an array
+     * the array contains reviews which can be assigned to books
+     */
+    private void populateRandomReviews() {
+        try {
+            File file = new File("src/data/reviews.txt");
+            Scanner in = new Scanner(file);
+
+            if (file.exists()) {
+                while (in.hasNextLine()) {
+                    String[] reviewElements = in.nextLine().split(">");
+                    randomReviews.add(new Review(reviewElements[0], Integer.parseInt(reviewElements[1])));
+                }
+            }
+
+            in.close();
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Library/generateReview()    Review file not found");
+        }
+    }
+
+    /**
      * calls addBook()
      *
      * @param attributes array containing attributes of a book
@@ -82,23 +112,16 @@ public class Library {
     /**
      * add to the Big General Storage
      * checks the book's publishing date, genre and popularity and updates the pointers in those arrays appropriately
-     *
-     * @param isbn
-     * @param title
-     * @param author
-     * @param pubDate
-     * @param publisher
-     * @param genre
      */
     public void addBook(String isbn, String title, String author, String pubDate, String publisher, String genre) {
         Book book = new Book(isbn, title, author, pubDate, publisher, getGenre(genre));
 
         // adding to BGS
-        int key = 0;
-        for (int i = 0; i < title.length() - 1; i++) { // this method of producing key is used since it allows us to use the title as the hash value.
-            key += title.codePointAt(i);          // we can alternatively use the Books.length function to gain the number of keys inside the HashTable.
-        }
-        books.putIfAbsent(key, book);
+//        int key = 0;
+//        for (int i = 0; i < title.length() - 1; i++) { // this method of producing key is used since it allows us to use the title as the hash value.
+//            key += title.codePointAt(i);          // we can alternatively use the Books.length function to gain the number of keys inside the HashTable.
+//        }
+        books.putIfAbsent(calculateKey(title), book);
 
         // updating latest
         if (isLatest(pubDate)) {
@@ -114,31 +137,40 @@ public class Library {
         switch (getGenre(genre)) {
             case ScienceFiction:
                 this.genreList[0].add(book);
+                break;
             case Fantasy:
                 this.genreList[1].add(book);
+                break;
             case Mystery:
                 this.genreList[2].add(book);
+                break;
             case Thriller:
                 this.genreList[3].add(book);
+                break;
             case HistoricalFiction:
                 this.genreList[4].add(book);
+                break;
             case Horror:
                 this.genreList[5].add(book);
+                break;
             case Biography:
                 this.genreList[6].add(book);
+                break;
             case Selfhelp:
                 this.genreList[7].add(book);
+                break;
             case Romance:
                 this.genreList[8].add(book);
+                break;
             case YoungAdult:
                 this.genreList[9].add(book);
-
+                break;
         }
 
-        bookCount++;
-        System.out.println(bookCount);
+//        System.out.println(bookCount++);
         System.out.println("Library/addBooks()  added >" + book.toString());
-        System.out.println("TITLE >" + getBook(book.getTitle()).getTitle());
+        System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
+        System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[getGenre(genre).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
     }
@@ -200,6 +232,13 @@ public class Library {
         }
 
         return key;
+    }
+
+    /** !!!! CHANGE BACK TO PRIVATE AFTER TESTING !!!!
+     * @return a random review from the list of reviews
+     */
+    public Review getRandomReview() {
+        return randomReviews.get((int)(Math.random()*randomReviews.size()));
     }
 
     public void getSortedByPopularBooks() {

@@ -2,24 +2,14 @@ import java.util.LinkedList;
 
 class Book {
 
-    private String isbn;
-    private String title;
-    private String author;
-    private String pubDate;
-    private String publisher;
-    private Genre genre;
+    private final String isbn;
+    private final String title;
+    private final String author;
+    private final String pubDate;
+    private final String publisher;
+    private final Genre genre;
     private LinkedList<Review> reviews;
     private float rating;
-
-    public Book(String author, String title, Genre genre, String pubDate, String ISBN, String Publisher) {
-        this.author = author;
-        this.title = title;
-        this.genre = genre;
-        this.pubDate=pubDate;
-        this.publisher =Publisher;
-        this.isbn =ISBN;
-
-    }
 
     public Book(String isbn, String title, String author, String pubDate, String publisher, Genre genre) {
         this.isbn = isbn;
@@ -28,6 +18,7 @@ class Book {
         this.pubDate = pubDate;
         this.publisher = publisher;
         this.genre = genre;
+        reviews = new LinkedList<>();
     }
 
     /**
@@ -36,6 +27,10 @@ class Book {
      * @param review
      */
     public void addReview(Review review){
+        if (reviews.size() == 0 ) {
+            this.rating = review.getRating();
+        }
+
         this.rating = ( this.rating + review.getRating() ) / 2;
         reviews.add(review);
     }
