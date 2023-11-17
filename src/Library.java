@@ -13,7 +13,6 @@ public class Library {
     //I do not know how to implement Heaptrees xd
     private TreeSet<Book> popular; // use Lab heaptree or learn treeset.
     private ArrayList<Review> randomReviews;
-    public int bookCount;
 
     /**
      * genre is an array of arraylists
@@ -24,9 +23,8 @@ public class Library {
      */
     public Library() {
         initializeLists();
-        populateBooks();
         populateRandomReviews();
-        bookCount = 0;
+        populateBooks();
         //Popular needs to be reformatted into the custom heaptree. Therefore I am not including it in the initialization now. -Abdur Rehman.
     }
 
@@ -167,7 +165,12 @@ public class Library {
                 break;
         }
 
-//        System.out.println(bookCount++);
+        // adding a random amount of reviews (Max 3)
+        int reviewAmount = (int) (Math.random() * 4);
+        for (int i = 0; i < reviewAmount; i++) {
+            getBook(book.getTitle()).addReview(getRandomReview());
+        }
+
         System.out.println("Library/addBooks()  added >" + book.toString());
         System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
         System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[getGenre(genre).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
@@ -234,11 +237,13 @@ public class Library {
         return key;
     }
 
-    /** !!!! CHANGE BACK TO PRIVATE AFTER TESTING !!!!
+    /**
+     * !!!! CHANGE BACK TO PRIVATE AFTER TESTING !!!!
+     *
      * @return a random review from the list of reviews
      */
     public Review getRandomReview() {
-        return randomReviews.get((int)(Math.random()*randomReviews.size()));
+        return randomReviews.get((int) (Math.random() * randomReviews.size()));
     }
 
     public void getSortedByPopularBooks() {

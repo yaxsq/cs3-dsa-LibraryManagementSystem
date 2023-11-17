@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="cant add books to map">
+    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="fixed book adding&#10;added a file for reviews&#10;minor fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/reviews.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/reviews.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700238416419</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed book adding&#10;added a file for reviews&#10;minor fixes">
+      <created>1700242342611</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700242342611</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,7 +127,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="started" />
     <MESSAGE value="cant add books to map" />
-    <option name="LAST_COMMIT_MESSAGE" value="cant add books to map" />
+    <MESSAGE value="fixed book adding&#10;added a file for reviews&#10;minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed book adding&#10;added a file for reviews&#10;minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -133,13 +140,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Library.java</url>
-          <line>158</line>
-          <option name="timeStamp" value="10" />
+          <line>87</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Library.java</url>
-          <line>157</line>
-          <option name="timeStamp" value="11" />
+          <line>79</line>
+          <properties class="Library" method="populateRandomReviews">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
