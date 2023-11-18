@@ -6,9 +6,15 @@ public class Library {
 
     private Hashtable<Integer, Book> books;
     private Book[] latestList;
+
+    private Book[] mostPopularity;
+    private Book[] leastPopularity;
     private ArrayList<Book>[] genreList;            // 0-9 index where each is a genre. Genre is an enum
-    //I do not know how to implement Heaptrees xd
-    private TreeSet<Book> popular; // use Lab heaptree or learn treeset.
+
+    // @ Qamar = TreeSet seems ideal for popularity as inorder traversal returns sorted by highest popularity
+    // Also TreeSet allows us to reverse in O(n) hence we don't need 2 separate Data Structure for most and least popular
+    private   TreeSet<Book> popularity;
+
     private ArrayList<Review> randomReviews;
 
     /**
@@ -22,14 +28,24 @@ public class Library {
         initializeLists();
         populateRandomReviews();
         populateBooks();
-        //Popular needs to be reformatted into the custom heaptree. Therefore I am not including it in the initialization now. -Abdur Rehman.
+
+        //@ Qamar = this fills the most popular and least popular array
+        // these 2 can be placed in addBooks method as well
+        updateMostPopular();
+        updateLeastPopular();
+
     }
 
     private void initializeLists() {
         books = new Hashtable<>();
         genreList = new ArrayList[10];
         latestList = new Book[15];
+        mostPopularity = new Book[10];
+        leastPopularity = new Book[10];
         randomReviews = new ArrayList<>();
+        //@ Qamar =  To convert the TreeSet into a MaxHeap we need a comparator
+        // reversing a TreeSet creates a Max HeapTree(I think)
+        popularity = new TreeSet<>(new ReversedMaxHeapComparator());
 
         for (int i = 0; i < genreList.length; i++) {
             genreList[i] = new ArrayList<>();
@@ -66,6 +82,7 @@ public class Library {
         } catch (FileNotFoundException ex) {
             System.out.println("File Not Found.        Library/populateBooks()");
         }
+
     }
 
     /**
@@ -142,11 +159,20 @@ public class Library {
             case YoungAdult -> this.genreList[9].add(book);
         }
 
-        // adding a random amount of reviews (Max 3)
-        int reviewAmount = (int) (Math.random() * 4);
+        // @ Qamar = I change the number of reviews to from 3-6 inclusive
+        // these leads to greater variation of average rating and hence better sorting by rating
+        int reviewAmount = (int) (3 +(Math.random() * 6));
         for (int i = 0; i < reviewAmount; i++) {
             getBook(book.getTitle()).addReview(getRandomReview());
         }
+
+        // @ Qamar  =  calculating average rating of the book
+        // I change Shaz's average rating method.
+        book.calculateRating();
+
+        // @ Qamar = adding book to popularity
+        popularity.add(book);
+
 
         System.out.println("Library/addBooks()  added >" + book.toString());
         System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
@@ -156,14 +182,49 @@ public class Library {
     }
 
     public void deleteBook(String title) {
+        //@ Qamar = first remove from popularity then remove from BGS
+        // other way round gives null error
+        popularity.remove(books.get(calculateKey(title)));
         books.remove(calculateKey(title));
         updateLatest();
-    }
-
-    private void rearrangeHeapTree() {
-        //
 
     }
+
+
+    /**
+     * @ Qamar
+     * this fills the mostPopular array(10) with the most popular books
+     */
+    public void updateMostPopular(){
+        int index = 0;
+        for (Book book : popularity) {
+            mostPopularity[index++] = book;
+
+            if (index == mostPopularity.length) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * @ Qamar
+     * this fills the leastPopular array(10) with the most popular books
+     */
+
+    public void updateLeastPopular(){
+        int index = 0;
+        // @ Qamar = this converts the TreeSet which by default is sorted by most popular to sorted by least popular
+        // this method is O(1)
+        TreeSet<Book> descendingSet = (TreeSet<Book>) popularity.descendingSet();
+        for (Book book : descendingSet) {
+            leastPopularity[index++] = book;
+
+            if (index == leastPopularity.length) {
+                break;
+            }
+        }
+    }
+
 
     /**
      * goes through the latestList to check if an entry is null
@@ -223,9 +284,6 @@ public class Library {
         return randomReviews.get((int) (Math.random() * randomReviews.size()));
     }
 
-    public void getSortedByPopularBooks() {
-        // return most popular using heaptree.
-    }
 
     /**
      * returns an array of 10 books according to the genre input
@@ -282,8 +340,38 @@ public class Library {
         return latestList;
     }
 
+    public Book[] getMostPopularity(){
+        return mostPopularity;
+    }
+
+    public Book[] getLeastPopularity() {
+        return leastPopularity;
+    }
+
     public void printBooks() {
         books.toString();
     }
+    static class ReversedMaxHeapComparator implements Comparator<Book> {
+        @Override
+        public int compare(Book o1, Book o2) {
+            // Compare function called by prebuilt TreeSet when traversing
+            float diff = o2.getReviewRating() - o1.getReviewRating();
+
+           // TreeSet does not store duplicate floats so if average rating of both books are same we return difference of hashcode
+            // no real purpose of HashCodes it just is a way to differentiate between books that have same average rating
+            if (diff == 0) {
+                return o1.hashCode() - o2.hashCode();
+            }
+
+
+            if (diff > 0) {
+               return  1;
+            } else {
+                return -1;
+            }
+
+        }
+    }
 
 }
+

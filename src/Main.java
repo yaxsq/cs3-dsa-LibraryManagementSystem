@@ -4,17 +4,27 @@ public class Main {
 
         // FYI: we have 250 books in books.txt but only ~221 dont have a ", " so we're actually working with 221 books right now
         Library library = new Library();
-//        printBookArray(library.getLatestBooks());
+    //   printBookArray(library.getLatestBooks());
+
+       // @ Qamar = this retrieves a 10 book array from mostPopular array and prints
+       printBookArray(library.getMostPopularity());
+        // @ Qamar = this retrieves a 10 book array from leastPopular array and prints
+       printBookArray(library.getLeastPopularity());
+        System.out.println();
+        System.out.println(library.getBook("The Deal"));
+
+       library.deleteBook("The Deal");
+
 //        printBookArray(library.getSortedByGenreBooks(Genre.Mystery));
 
-
+        System.out.println(library.getBook("The Deal"));
 
     }
 
     private static void printBookArray(Book[] books) {
         System.out.println("\n\n PRINTING \n");
-        for (int i = 0; i < books.length; i++) {
-            System.out.println(books[i].toString());
+        for (Book book : books) {
+            System.out.println(book.toString());
         }
     }
 

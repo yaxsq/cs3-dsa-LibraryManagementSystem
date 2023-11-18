@@ -9,7 +9,7 @@ class Book {
     private final String publisher;
     private final Genre genre;
     private LinkedList<Review> reviews;
-    private float rating;
+    private float rating = 0;
 
     public Book(String isbn, String title, String author, String pubDate, String publisher, Genre genre) {
         this.isbn = isbn;
@@ -27,12 +27,21 @@ class Book {
      * @param review
      */
     public void addReview(Review review){
-        if (reviews.size() == 0 ) {
-            this.rating = review.getRating();
-        }
-
-        this.rating = ( this.rating + review.getRating() ) / 2;
         reviews.add(review);
+    }
+
+    /**
+     * @ Qamar
+     * Calculates an average rating for the book
+     * Called after the reviews arraylist is populated
+     * Used for popularity heaptrees
+     */
+    public void calculateRating(){
+        float sum = 0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        this.rating = sum/(float) reviews.size();
     }
 
     public void addReview(String review, int rating) {
@@ -62,6 +71,8 @@ class Book {
     public LinkedList<Review> getReviews() {
         return reviews;
     }
+
+
 
     public float getReviewRating() {
         return rating;
