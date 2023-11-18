@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Library {
 
-    private Hashtable<Integer, Book> books;
+    private Hashtable<String, Book> books;
     private Book[] latestList;
 
     private Book[] mostPopularity;
@@ -13,7 +13,7 @@ public class Library {
 
     // @ Qamar = TreeSet seems ideal for popularity as inorder traversal returns sorted by highest popularity
     // Also TreeSet allows us to reverse in O(n) hence we don't need 2 separate Data Structure for most and least popular
-    private   TreeSet<Book> popularity;
+    private TreeSet<Book> popularity;
 
     private ArrayList<Review> randomReviews;
 
@@ -74,13 +74,13 @@ public class Library {
                 }
 
             } else {
-                System.out.println("File does not exist.        Library/populateBooks()");
+                System.out.println("Library/populateBooks()         File does not exist.");
             }
 
             in.close();
 
         } catch (FileNotFoundException ex) {
-            System.out.println("File Not Found.        Library/populateBooks()");
+            System.out.println("Library/populateBooks()         File Not Found Exception.");
         }
 
     }
@@ -117,7 +117,7 @@ public class Library {
         if (attributes.length == 6) {
             addBook(attributes[0], attributes[1], attributes[2], attributes[3], attributes[4], attributes[5]);
         } else {
-            System.out.println("Invalid array        Library/addBook()");
+            System.out.println("Library/addBook()        Invalid array");
         }
     }
 
@@ -128,55 +128,62 @@ public class Library {
     public void addBook(String isbn, String title, String author, String pubDate, String publisher, String genre) {
         Book book = new Book(isbn, title, author, pubDate, publisher, getGenre(genre));
 
-        // adding to BGS
-//        int key = 0;
-//        for (int i = 0; i < title.length() - 1; i++) { // this method of producing key is used since it allows us to use the title as the hash value.
-//            key += title.codePointAt(i);          // we can alternatively use the Books.length function to gain the number of keys inside the HashTable.
-//        }
-        books.putIfAbsent(calculateKey(title), book);
+        // adding to main storage
+//        books.putIfAbsent(calculateKey(title), book);
+        books.putIfAbsent(book.getTitle(), book);
+//        System.out.println(books.putIfAbsent(calculateKey(title), book));
 
-        // updating latest
-        if (isLatest(pubDate)) {
-            for (int i = 0; i < latestList.length; i++) {
-                if (latestList[i] == null) {                    // fills a null node
-                    latestList[i] = book;
-                    break;
+        /**
+         SOME BOOKS ARE NOT BEING ADDED TO THE BOOK
+         THEY GET REVIEWS AND A RATING ASSIGNED BUT THEY BECOME "NaN" FOR SOME REASON
+         THIS MESSES UP THE MOST POPULAR ARRAY
+         THESE BOOKS DO EXIST IN OTHER ARRAYS I.E. GENRE AND POPULARITY BUT NOT IN THE BGS
+         **/
+
+//        if (books.get(calculateKey(book.getTitle())) != null) {     // ///// !!!!!! TEMPORARY CONDITION !!!!!! /////
+
+            // updating latest
+            if (isLatest(pubDate)) {
+                for (int i = 0; i < latestList.length; i++) {
+                    if (latestList[i] == null) {                    // fills a null node
+                        latestList[i] = book;
+                        break;
+                    }
                 }
             }
-        }
 
-        // updating genre
-        switch (getGenre(genre)) {
-            case ScienceFiction -> this.genreList[0].add(book);
-            case Fantasy -> this.genreList[1].add(book);
-            case Mystery -> this.genreList[2].add(book);
-            case Thriller -> this.genreList[3].add(book);
-            case HistoricalFiction -> this.genreList[4].add(book);
-            case Horror -> this.genreList[5].add(book);
-            case Biography -> this.genreList[6].add(book);
-            case Selfhelp -> this.genreList[7].add(book);
-            case Romance -> this.genreList[8].add(book);
-            case YoungAdult -> this.genreList[9].add(book);
-        }
+            // updating genre
+            switch (getGenre(genre)) {
+                case ScienceFiction -> this.genreList[0].add(book);
+                case Fantasy -> this.genreList[1].add(book);
+                case Mystery -> this.genreList[2].add(book);
+                case Thriller -> this.genreList[3].add(book);
+                case HistoricalFiction -> this.genreList[4].add(book);
+                case Horror -> this.genreList[5].add(book);
+                case Biography -> this.genreList[6].add(book);
+                case Selfhelp -> this.genreList[7].add(book);
+                case Romance -> this.genreList[8].add(book);
+                case YoungAdult -> this.genreList[9].add(book);
+            }
 
-        // @ Qamar = I change the number of reviews to from 3-6 inclusive
-        // these leads to greater variation of average rating and hence better sorting by rating
-        int reviewAmount = (int) (3 +(Math.random() * 6));
-        for (int i = 0; i < reviewAmount; i++) {
-            getBook(book.getTitle()).addReview(getRandomReview());
-        }
+            // @ Qamar = I change the number of reviews to from 3-5 inclusive
+            // these leads to greater variation of average rating and hence better sorting by rating
+            int reviewAmount = (int) (3 + (Math.random() * 6));
+            for (int i = 0; i < reviewAmount; i++) {
+                getBook(book.getTitle()).addReview(getRandomReview());
+            }
 
-        // @ Qamar  =  calculating average rating of the book
-        // I change Shaz's average rating method.
-        book.calculateRating();
+            // @ Qamar  =  calculating average rating of the book
+            // I changed Shaz's average rating method.
+            book.calculateRating();
 
-        // @ Qamar = adding book to popularity
-        popularity.add(book);
+            // @ Qamar = adding book to popularity
+            popularity.add(book);
 
-
-        System.out.println("Library/addBooks()  added >" + book.toString());
-        System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
-        System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
+            System.out.println("Library/addBooks()  added >" + book.toString());
+            System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
+            System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
+//        }
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
     }
@@ -184,18 +191,36 @@ public class Library {
     public void deleteBook(String title) {
         //@ Qamar = first remove from popularity then remove from BGS
         // other way round gives null error
-        popularity.remove(books.get(calculateKey(title)));
-        books.remove(calculateKey(title));
+//        popularity.remove(books.get(calculateKey(title)));
+        popularity.remove(title);
+//        books.remove(calculateKey(title));
+        books.remove(title);
         updateLatest();
-
+        updatePopularLists();
     }
 
+    /**
+     * goes through the popularity arrays
+     * calls the update function if they contain a null pointer
+     */
+    private void updatePopularLists() {
+        for (int i = 0; i < mostPopularity.length; i++) {
+            if (mostPopularity[i] == null) {
+                updateMostPopular();
+            }
+        }
+        for (int i = 0; i < leastPopularity.length; i++) {
+            if (leastPopularity[i] == null) {
+                updateLeastPopular();
+            }
+        }
+    }
 
     /**
      * @ Qamar
      * this fills the mostPopular array(10) with the most popular books
      */
-    public void updateMostPopular(){
+    private void updateMostPopular() {
         int index = 0;
         for (Book book : popularity) {
             mostPopularity[index++] = book;
@@ -211,7 +236,7 @@ public class Library {
      * this fills the leastPopular array(10) with the most popular books
      */
 
-    public void updateLeastPopular(){
+    private void updateLeastPopular() {
         int index = 0;
         // @ Qamar = this converts the TreeSet which by default is sorted by most popular to sorted by least popular
         // this method is O(1)
@@ -260,27 +285,25 @@ public class Library {
         return false;
     }
 
-    /**
-     * calculates the hash key of the input
-     *
-     * @param title
-     * @return hash key
-     */
-    private int calculateKey(String title) {
-        int key = 0;
-        for (int i = 0; i < title.length(); i++) {
-            key += title.codePointAt(i);
-        }
+//    /**
+//     * calculates the hash key of the input
+//     *
+//     * @param title
+//     * @return hash key
+//     */
+//    private int calculateKey(String title) {
+//        int key = 0;
+//        for (int i = 0; i < title.length(); i++) {
+//            key += title.codePointAt(i);
+//        }
+//
+//        return key;
+//    }
 
-        return key;
-    }
-
     /**
-     * !!!! CHANGE BACK TO PRIVATE AFTER TESTING !!!!
-     *
      * @return a random review from the list of reviews
      */
-    public Review getRandomReview() {
+    private Review getRandomReview() {
         return randomReviews.get((int) (Math.random() * randomReviews.size()));
     }
 
@@ -333,14 +356,15 @@ public class Library {
      * hashes the title and returns the book from the books hashTable
      */
     public Book getBook(String title) {
-        return books.get(calculateKey(title));
+//        return books.get(calculateKey(title));
+        return books.get(title);
     }
 
     public Book[] getLatestBooks() {
         return latestList;
     }
 
-    public Book[] getMostPopularity(){
+    public Book[] getMostPopularity() {
         return mostPopularity;
     }
 
@@ -351,13 +375,14 @@ public class Library {
     public void printBooks() {
         books.toString();
     }
-    static class ReversedMaxHeapComparator implements Comparator<Book> {
+
+    private static class ReversedMaxHeapComparator implements Comparator<Book> {
         @Override
         public int compare(Book o1, Book o2) {
             // Compare function called by prebuilt TreeSet when traversing
             float diff = o2.getReviewRating() - o1.getReviewRating();
 
-           // TreeSet does not store duplicate floats so if average rating of both books are same we return difference of hashcode
+            // TreeSet does not store duplicate floats so if average rating of both books are same we return difference of hashcode
             // no real purpose of HashCodes it just is a way to differentiate between books that have same average rating
             if (diff == 0) {
                 return o1.hashCode() - o2.hashCode();
@@ -365,7 +390,7 @@ public class Library {
 
 
             if (diff > 0) {
-               return  1;
+                return 1;
             } else {
                 return -1;
             }

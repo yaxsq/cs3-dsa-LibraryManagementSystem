@@ -1,3 +1,9 @@
+044651747X,Puerto Vallarta Squeeze,Robert James Waller,1995,Warner Books,Historical Fiction
+449005615,Seabiscuit: An American Legend,LAURA HILLENBRAND,2002,Ballantine Books,Thriller
+380778556,Rebecca,Daphne Du Maurier,1994,Avon,Historical Fiction
+671027360,Angels &amp; Demons,Dan Brown,2001,Pocket Star,Science Fiction
+039575514X,My Antonia,Willa Cather,1995,Mariner Books,Horror
+345311396,Private Screening,Richard North Patterson,1994,Ballantine Books,Mystery
 195153448,Classical Mythology,Mark P. O. Morford,2002,Oxford University Press,Self-help
 2005018,Clara Callan,Richard Bruce Wright,2001,HarperFlamingo Canada,Mystery
 60973129,Decision in Normandy,Carlo D'Este,1991,HarperPerennial,Young Adult
@@ -36,7 +42,6 @@
 3442446937,Tage der Unschuld.,Richard North Patterson,2000,Goldmann,Thriller
 375406328,Lying Awake,Mark Salzman,2000,Alfred A. Knopf,Biography
 446310786,To Kill a Mockingbird,Harper Lee,1988,Little Brown &amp; Company,Science Fiction
-449005615,Seabiscuit: An American Legend,LAURA HILLENBRAND,2002,Ballantine Books,Thriller
 60168013,Pigs in Heaven,Barbara Kingsolver,1993,Harpercollins,Mystery
 038078243X,Miss Zukas and the Raven's Dance,Jo Dereske,1996,Avon,Mystery
 055321215X,Pride and Prejudice,Jane Austen,1983,Bantam,Self-help
@@ -116,7 +121,6 @@
 446612618,A Kiss Remembered,Sandra Brown,2003,Warner Books,Biography
 451208080,The Short Forever,Stuart Woods,2003,Signet Book,Romance
 553584383,Dead Aim,IRIS JOHANSEN,2004,Bantam Books,Fantasy
-671027360,Angels &amp; Demons,Dan Brown,2001,Pocket Star,Science Fiction
 812575954,The Deal,Joe Hutsko,2000,Tor Books (Mm),Thriller
 316735736,All He Ever Wanted: A Novel,Anita Shreve,2004,Back Bay Books,Historical Fiction
 743439740,"Every Breath You Take : A True Story of Obsession, Revenge, and Murder",Ann Rule,2002,Pocket,Self-help
@@ -146,7 +150,6 @@
 553583468,"Whisper of Evil (Hooper, Kay. Evil Trilogy.)",Kay Hooper,2002,Bantam Books,Young Adult
 8420639133,Temor y Temblor,Soren Kierkegaard,2001,Alianza,Biography
 8476409419,Estudios sobre el amor,Jose Ortega Y Gaset,2001,Downtown Book Center,Mystery
-380778556,Rebecca,Daphne Du Maurier,1994,Avon,Historical Fiction
 451525221,Scarlet Letter,Nathaniel Hawthorne,1993,Signet Book,Fantasy
 2740230,Keep It Simple: And Get More Out of Life,Nick Page,1999,Trafalgar Square,Science Fiction
 385336772,Diary of a Mad Mom-To-Be,Laura Wolf,2003,Delta,Romance
@@ -155,14 +158,12 @@
 140252800,The Brimstone Wedding,Barbara Vine,1997,Penguin Books Ltd,Horror
 451452755,The Catswold Portal,Shirley Rousseau Murphy,1993,Roc,Science Fiction
 812575482,Through Wolf's Eyes (Wolf),Jane Lindskold,2002,Tor Fantasy,Science Fiction
-044651747X,Puerto Vallarta Squeeze,Robert James Waller,1995,Warner Books,Historical Fiction
 60801263,Tree Grows In Brooklyn,Betty Smith,1988,Harpercollins Publisher,Fantasy
 61030147,"Cybill Disobedience: How I Survived Beauty Pageants, Elvis, Sex, Bruce Willis, Lies, Marriage, Motherhood, Hollywood, and the Irrepressible Urge to Say What I Think",Cybill Shepherd,2001,Avon Books,Historical Fiction
 140250964,Snow Angels,Stewart O'Nan,1995,Penguin Books,Fantasy
 446527165,Wish You Well,David Baldacci,2000,Warner Books,Fantasy
 671461494,The Hitchhiker's Guide to the Galaxy,Douglas Adams,1982,Pocket,Horror
 385337639,Crow Lake (Today Show Book Club #7),Mary Lawson,2003,Delta,Self-help
-039575514X,My Antonia,Willa Cather,1995,Mariner Books,Horror
 451206673,Pen Pals,Olivia Goldsmith,2002,Signet Book,Mystery
 330332775,Bridget Jones's Diary,Helen Fielding,1997,Picador (UK),Fantasy
 486284735,Pride and Prejudice (Dover Thrift Editions),Jane Austen,1995,Dover Publications,Historical Fiction
@@ -204,7 +205,6 @@
 312872682,The James Dean Affair: A Neil Gulliver &amp; Stevie Marriner Novel,Robert S. Levinson,2000,St Martins Pr,Biography
 316602906,The Big Bad Wolf: A Novel,James Patterson,2003,"Little, Brown",Horror
 316693006,Four Blind Mice,James Patterson,2002,"Little, Brown",Horror
-345311396,Private Screening,Richard North Patterson,1994,Ballantine Books,Mystery
 345378490,Congo,Michael Crichton,1995,Ballantine Books,Romance
 345404793,Protect and Defend,Richard North Patterson,2001,Ballantine Books,Biography
 345433173,The Tall Pine Polka,Lorna Landvik,1999,Ballantine Books,Self-help

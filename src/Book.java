@@ -9,7 +9,8 @@ class Book {
     private final String publisher;
     private final Genre genre;
     private LinkedList<Review> reviews;
-    private float rating = 0;
+    private float rating;
+    private int sumRating;
 
     public Book(String isbn, String title, String author, String pubDate, String publisher, Genre genre) {
         this.isbn = isbn;
@@ -19,15 +20,24 @@ class Book {
         this.publisher = publisher;
         this.genre = genre;
         reviews = new LinkedList<>();
+        rating = 0;
+        sumRating = 0;
     }
 
     /**
      * adds a review to the list of reviews
      * updates the average rating by adjusting it with the new rating
+     *
      * @param review
      */
-    public void addReview(Review review){
+    public void addReview(Review review) {
         reviews.add(review);
+        calculateRating();
+//        System.out.println("CALRATING: " + this.getReviewRating());
+//        this.rating = (((reviews.size()-1) * this.getReviewRating()) + review.getRating())/ (reviews.size());
+//        this.rating = ((this.rating * (this.reviews.size() - 2)) + rating) / this.reviews.size()-1;
+//        this.rating = ((this.rating * (reviews.size() - 1)) + review.getRating()) / reviews.size();
+//        System.out.println("NEWRATING: " + this.getReviewRating());
     }
 
     /**
@@ -36,12 +46,12 @@ class Book {
      * Called after the reviews arraylist is populated
      * Used for popularity heaptrees
      */
-    public void calculateRating(){
+    void calculateRating() {
         float sum = 0;
         for (Review review : reviews) {
             sum += review.getRating();
         }
-        this.rating = sum/(float) reviews.size();
+        this.rating = sum / (float) reviews.size();
     }
 
     public void addReview(String review, int rating) {
@@ -73,7 +83,6 @@ class Book {
     }
 
 
-
     public float getReviewRating() {
         return rating;
     }
@@ -84,6 +93,6 @@ class Book {
 
     @Override
     public String toString() {
-        return ">> " + isbn +  " > " + title +  " > " + author +  " > " + pubDate + " > " + publisher +  " > " + getGenre() + reviews + " > " + getReviewRating() + "<<";
+        return ">> " + isbn + " > " + title + " > " + author + " > " + pubDate + " > " + publisher + " > " + getGenre() + reviews + " > " + getReviewRating() + "<<";
     }
 }
