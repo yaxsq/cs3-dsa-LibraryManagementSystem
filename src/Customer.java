@@ -2,18 +2,26 @@ import java.util.ArrayList;
 
 public class Customer {
     private String name;
-    private int ID;
+    private int id;
+    private int signature;
+
     private ArrayList<Book> borrowedBooks = new ArrayList<Book>();
-    // Why are we creating another Library in Customers?
- //   private Library library = new Library();
 
     public Customer(String name, int ID) {
         this.name = name;
-        this.ID = ID;
+        this.id = ID;
+        signature = (name + ID).hashCode();
     }
-    
 
-    public void addBook(Book book) {
+    /**
+     * @param signature
+     * @return true if parameter is equal to the signature
+     */
+    public boolean verifySignature(int signature) {
+        return (this.signature == signature);
+    }
+
+    public void addBorrowedBook(Book book) {
         borrowedBooks.add(book);
     }
 
@@ -22,7 +30,7 @@ public class Customer {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public ArrayList<Book> getBorrowedBooks() {
@@ -31,11 +39,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "name='" + name + '\'' +
-                ", ID=" + ID +
-                ", borrowedBooks=" + borrowedBooks +
-                '}';
+        return name + " > " + id + " > " + borrowedBooks;
     }
 
 

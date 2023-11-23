@@ -48,7 +48,7 @@ class Book {
      * @ Qamar
      * Calculates an average rating for the book
      * Called after the reviews arraylist is populated
-     * Used for popularity heaptrees
+     * Used for popularity heaptree
      */
     void calculateRating() {
         float sum = 0;
@@ -68,12 +68,12 @@ class Book {
             //Stores the value of the first transaction in the arrayList, the first transaction has previous blockHash 0
             transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), 0));
             //This adds the borrowedBook in the customer's ArrayList
-            CustomerDetails.addBook(this);
+            CustomerDetails.addBorrowedBook(this);
             return;
         }
         //All the other transaction's previous Hashcode is dependent on the previous input, creating a chain.
         transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), transactions.size() - 1));
-        CustomerDetails.addBook(this);
+        CustomerDetails.addBorrowedBook(this);
     }
 
     public void returnBook(Customer CustomerDetails) {

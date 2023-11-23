@@ -33,7 +33,7 @@ class BlockChain {
             //Stores the value of the first transaction in the arrayList, the first transaction has previous blockHash 0
             blockChain.add(new Block(customer.getName() + " has borrowed the book " + searchBook.getTitle() + " by " + searchBook.getAuthor() + " on time " + System.currentTimeMillis(), 0));
             //This adds the borrowedBook in the customer's ArrayList
-            customer.addBook(searchBook);
+            customer.addBorrowedBook(searchBook);
             return;
         }
         blockChain.add(new Block(customer.getName() + " has borrowed the book " + searchBook.getTitle() + " by " + searchBook.getAuthor() + " on time " + System.currentTimeMillis(), blockChain.size() - 1));
