@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 class Book {
@@ -11,6 +12,9 @@ class Book {
     private LinkedList<Review> reviews;
     private float rating;
     private int sumRating;
+    private boolean borrowed = false;
+    private ArrayList<Block> transactions = new ArrayList<Block>();
+
 
     public Book(String isbn, String title, String author, String pubDate, String publisher, Genre genre) {
         this.isbn = isbn;
@@ -54,6 +58,30 @@ class Book {
         this.rating = sum / (float) reviews.size();
     }
 
+    public void borrowBook(Customer CustomerDetails) {
+        if (borrowed == true) {
+            System.out.println("This book is already borrowed");
+            return;
+        }
+        this.borrowed = true;
+        if (transactions.size() == 0) {
+            //Stores the value of the first transaction in the arrayList, the first transaction has previous blockHash 0
+            transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), 0));
+            //This adds the borrowedBook in the customer's ArrayList
+            CustomerDetails.addBook(this);
+            return;
+        }
+        //All the other transaction's previous Hashcode is dependent on the previous input, creating a chain.
+        transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), transactions.size() - 1));
+        CustomerDetails.addBook(this);
+    }
+
+    public void returnBook(Customer CustomerDetails) {
+        transactions.add(new Block(CustomerDetails.getName() + " has returned the book " + this.title + " by" + this.author + " on time" + System.currentTimeMillis(), transactions.size() - 1));
+        borrowed=false;
+        return;
+    }
+
     public void addReview(String review, int rating) {
         addReview(new Review(review, rating));
     }
@@ -89,6 +117,13 @@ class Book {
 
     public String getPubDate() {
         return pubDate;
+    }
+
+    public void printTransactions() {
+        for (int i = 0; i < transactions.size(); i++) {
+            System.out.println(transactions.get(i).getTransactions());
+        }
+
     }
 
     @Override

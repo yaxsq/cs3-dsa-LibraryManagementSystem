@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Library {
 
+    private static Library instance;
     private Hashtable<String, Book> books;
     private Book[] latestList;
 
@@ -14,8 +15,10 @@ public class Library {
     // @ Qamar = TreeSet seems ideal for popularity as inorder traversal returns sorted by highest popularity
     // Also TreeSet allows us to reverse in O(n) hence we don't need 2 separate Data Structure for most and least popular
     private TreeSet<Book> popularity;
+    public Hashtable<String, Customer> customers;
 
     private ArrayList<Review> randomReviews;
+    private ArrayList<Block> transactions = new ArrayList<Block>();
 
     /**
      * genre is an array of arraylists
@@ -24,10 +27,11 @@ public class Library {
      * <p>
      * latest is a simple array which contains books published in 2020 or 2021
      */
-    public Library() {
+    private Library() {
         initializeLists();
         populateRandomReviews();
         populateBooks();
+        populateCustomers();
 
         //@ Qamar = this fills the most popular and least popular array
         // these 2 can be placed in addBooks method as well
@@ -35,9 +39,16 @@ public class Library {
         updateLeastPopular();
 
     }
+    public static Library getInstance() {
+        if (instance == null) {
+            instance = new Library();
+        }
+        return instance;
+    }
 
     private void initializeLists() {
         books = new Hashtable<>();
+        customers = new Hashtable<>();
         genreList = new ArrayList[10];
         latestList = new Book[15];
         mostPopularity = new Book[10];
@@ -109,6 +120,38 @@ public class Library {
     }
 
     /**
+     * Reads customers text file and populates customers hashmap
+     * @ NEED TO FIX
+     * NOT ALL CUSTOMERS ARE BEING ADDED
+     */
+    public void populateCustomers()
+    {
+
+        try {
+            File file = new File("src/data/customers.txt");
+            Scanner in = new Scanner(file);
+
+            if (file.exists()) {
+                while (in.hasNextLine()) {
+                    String[] customerElements = in.nextLine().split(",");
+
+                    // Adding Customers to customers HashMap
+                    // Key made using customers name+ID
+                    Customer customer = new Customer(customerElements[0],Integer.parseInt(customerElements[1]));
+                    customers.put((customerElements[0]+customerElements[1]),customer);
+
+
+                }
+            }
+
+            in.close();
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Library/populateCustomers()    Customers file not found");
+        }
+    }
+
+    /**
      * calls addBook()
      *
      * @param attributes array containing attributes of a book
@@ -142,47 +185,47 @@ public class Library {
 
 //        if (books.get(calculateKey(book.getTitle())) != null) {     // ///// !!!!!! TEMPORARY CONDITION !!!!!! /////
 
-            // updating latest
-            if (isLatest(pubDate)) {
-                for (int i = 0; i < latestList.length; i++) {
-                    if (latestList[i] == null) {                    // fills a null node
-                        latestList[i] = book;
-                        break;
-                    }
+        // updating latest
+        if (isLatest(pubDate)) {
+            for (int i = 0; i < latestList.length; i++) {
+                if (latestList[i] == null) {                    // fills a null node
+                    latestList[i] = book;
+                    break;
                 }
             }
+        }
 
-            // updating genre
-            switch (getGenre(genre)) {
-                case ScienceFiction -> this.genreList[0].add(book);
-                case Fantasy -> this.genreList[1].add(book);
-                case Mystery -> this.genreList[2].add(book);
-                case Thriller -> this.genreList[3].add(book);
-                case HistoricalFiction -> this.genreList[4].add(book);
-                case Horror -> this.genreList[5].add(book);
-                case Biography -> this.genreList[6].add(book);
-                case Selfhelp -> this.genreList[7].add(book);
-                case Romance -> this.genreList[8].add(book);
-                case YoungAdult -> this.genreList[9].add(book);
-            }
+        // updating genre
+        switch (getGenre(genre)) {
+            case ScienceFiction -> this.genreList[0].add(book);
+            case Fantasy -> this.genreList[1].add(book);
+            case Mystery -> this.genreList[2].add(book);
+            case Thriller -> this.genreList[3].add(book);
+            case HistoricalFiction -> this.genreList[4].add(book);
+            case Horror -> this.genreList[5].add(book);
+            case Biography -> this.genreList[6].add(book);
+            case Selfhelp -> this.genreList[7].add(book);
+            case Romance -> this.genreList[8].add(book);
+            case YoungAdult -> this.genreList[9].add(book);
+        }
 
-            // @ Qamar = I change the number of reviews to from 3-5 inclusive
-            // these leads to greater variation of average rating and hence better sorting by rating
-            int reviewAmount = (int) (3 + (Math.random() * 6));
-            for (int i = 0; i < reviewAmount; i++) {
-                getBook(book.getTitle()).addReview(getRandomReview());
-            }
+        // @ Qamar = I change the number of reviews to from 3-5 inclusive
+        // these leads to greater variation of average rating and hence better sorting by rating
+        int reviewAmount = (int) (3 + (Math.random() * 6));
+        for (int i = 0; i < reviewAmount; i++) {
+            getBook(book.getTitle()).addReview(getRandomReview());
+        }
 
-            // @ Qamar  =  calculating average rating of the book
-            // I changed Shaz's average rating method.
-            book.calculateRating();
+        // @ Qamar  =  calculating average rating of the book
+        // I changed Shaz's average rating method.
+        book.calculateRating();
 
-            // @ Qamar = adding book to popularity
-            popularity.add(book);
+        // @ Qamar = adding book to popularity
+        popularity.add(book);
 
-            System.out.println("Library/addBooks()  added >" + book.toString());
-            System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
-            System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
+        System.out.println("Library/addBooks()  added >" + book.toString());
+        System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
+        System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
 //        }
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
