@@ -124,8 +124,7 @@ public class Library {
      * @ NEED TO FIX
      * NOT ALL CUSTOMERS ARE BEING ADDED
      */
-    public void populateCustomers()
-    {
+    public void populateCustomers() {
 
         try {
             File file = new File("src/data/customers.txt");
@@ -234,6 +233,7 @@ public class Library {
     public void deleteBook(String title) {
         //@ Qamar = first remove from popularity then remove from BGS
         // other way round gives null error
+
 //        popularity.remove(books.get(calculateKey(title)));
         popularity.remove(title);
 //        books.remove(calculateKey(title));
@@ -241,6 +241,10 @@ public class Library {
         updateLatest();
         updatePopularLists();
     }
+
+//    public ArrayList<Book> search(String title) {
+//
+//    }
 
     /**
      * goes through the popularity arrays
@@ -407,11 +411,11 @@ public class Library {
         return latestList;
     }
 
-    public Book[] getMostPopularity() {
+    public Book[] getMostPopular() {
         return mostPopularity;
     }
 
-    public Book[] getLeastPopularity() {
+    public Book[] getLeastPopular() {
         return leastPopularity;
     }
 

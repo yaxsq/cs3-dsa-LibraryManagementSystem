@@ -13,6 +13,7 @@ class Book {
     private float rating;
     private int sumRating;
     private boolean borrowed = false;
+    // A local list of blocks to keep track of a certain book's borrow history
     private ArrayList<Block> transactions = new ArrayList<Block>();
 
 
@@ -63,27 +64,32 @@ class Book {
             System.out.println("This book is already borrowed");
             return;
         }
+
         this.borrowed = true;
         if (transactions.size() == 0) {
-            //Stores the value of the first transaction in the arrayList, the first transaction has previous blockHash 0
+            // Stores the value of the first transaction in the arrayList, the first transaction has previous blockHash 0
             transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), 0));
-            //This adds the borrowedBook in the customer's ArrayList
+            // This adds the borrowedBook in the customer's ArrayList
             CustomerDetails.addBorrowedBook(this);
             return;
         }
-        //All the other transaction's previous Hashcode is dependent on the previous input, creating a chain.
+
+        // All the other transaction's previous Hashcode is dependent on the previous input, creating a chain.
         transactions.add(new Block(CustomerDetails.getName() + " has borrowed the book " + this.title + " by " + this.author + " on time " + System.currentTimeMillis(), transactions.size() - 1));
         CustomerDetails.addBorrowedBook(this);
     }
 
     public void returnBook(Customer CustomerDetails) {
         transactions.add(new Block(CustomerDetails.getName() + " has returned the book " + this.title + " by" + this.author + " on time" + System.currentTimeMillis(), transactions.size() - 1));
-        borrowed=false;
-        return;
+        borrowed = false;
     }
 
     public void addReview(String review, int rating) {
         addReview(new Review(review, rating));
+    }
+
+    public void isBorrowed() {
+        System.out.println(this.title + " > " + borrowed);
     }
 
     public String getISBN() {
@@ -129,5 +135,9 @@ class Book {
     @Override
     public String toString() {
         return ">> " + isbn + " > " + title + " > " + author + " > " + pubDate + " > " + publisher + " > " + getGenre() + reviews + " > " + getReviewRating() + "<<";
+    }
+
+    public String toString(int i) {
+        return ">> " + isbn + " > " + title + " > " + author + " > " + pubDate + " > " + publisher + " > " + getGenre() + " > " + getReviewRating() + "<<";
     }
 }

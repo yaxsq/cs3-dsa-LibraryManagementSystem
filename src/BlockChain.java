@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 class BlockChain {
     private static BlockChain chain = null;
-    private ArrayList<Block> blockChain=new ArrayList<Block>();
+    private ArrayList<Block> blockChain = new ArrayList<Block>();
     private Library library;
 
 
     private BlockChain() {
-    library = Library.getInstance();
+        library = Library.getInstance();
     }
 
     public static BlockChain getChain() {

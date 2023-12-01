@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="Qamar's changes&#10;created popular list&#10;created most and least popular arrays&#10;updated delete to work with popular&#10;fixed average rating calculation&#10;books have 3 to 6 reviews&#10;custom class to compare book rating to avoid collisions in tree">
+    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="block &#10;blockchain singleton&#10;customers&#10;library singleton">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/DS_Project_3.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/firstIteration.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forthIteration.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/icon/icon.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/trimmed.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booksAll.txt" beforeDir="false" afterPath="$PROJECT_DIR$/booksAll.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockChain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/books.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/books.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +44,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -142,7 +149,28 @@
       <option name="project" value="LOCAL" />
       <updated>1700328149189</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="changed hash key to the title&#10;found an error in the data which causes NaN in rating&#10;the reviews also becomes empty&#10;made an attempt to make rating calculation better">
+      <created>1700333249820</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700333249820</updated>
+    </task>
+    <task id="LOCAL-00008" summary="block &#10;blockchain singleton&#10;customers&#10;library singleton">
+      <created>1700728980687</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700728980687</updated>
+    </task>
+    <task id="LOCAL-00009" summary="block &#10;blockchain singleton&#10;customers&#10;library singleton">
+      <created>1700729780298</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700729780298</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,15 +192,17 @@
     <MESSAGE value="review.txt reading&#10;randomReviews array&#10;assigning reviews to books" />
     <MESSAGE value="small QOL changes" />
     <MESSAGE value="Qamar's changes&#10;created popular list&#10;created most and least popular arrays&#10;updated delete to work with popular&#10;fixed average rating calculation&#10;books have 3 to 6 reviews&#10;custom class to compare book rating to avoid collisions in tree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Qamar's changes&#10;created popular list&#10;created most and least popular arrays&#10;updated delete to work with popular&#10;fixed average rating calculation&#10;books have 3 to 6 reviews&#10;custom class to compare book rating to avoid collisions in tree" />
+    <MESSAGE value="changed hash key to the title&#10;found an error in the data which causes NaN in rating&#10;the reviews also becomes empty&#10;made an attempt to make rating calculation better" />
+    <MESSAGE value="block &#10;blockchain singleton&#10;customers&#10;library singleton" />
+    <option name="LAST_COMMIT_MESSAGE" value="block &#10;blockchain singleton&#10;customers&#10;library singleton" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/src/Frame.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

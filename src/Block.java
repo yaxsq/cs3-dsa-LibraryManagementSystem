@@ -15,17 +15,12 @@ public class Block {
         return transactions;
     }
 
-
-
     public int getBlockHash() {
         return blockHash;
     }
 
-
-
     public int getPreviousBlockHash() {
         return previousBlockHash;
     }
-
 
 }
