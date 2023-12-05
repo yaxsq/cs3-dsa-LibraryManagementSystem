@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        setUpUI();
+       setUpUI();
 
         // FYI: we have 250 books in books.txt but only ~221 dont have a ", " so we're actually working with 221 books right now
 //        Library library = new Library();

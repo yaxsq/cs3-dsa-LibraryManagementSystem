@@ -6,12 +6,8 @@ public class BorrowWindow {
     JPanel textBoxPanel;
     public BorrowWindow() {
 
-
-
         initializeFrame();
         initializeTextBoxPanel();
-
-
 
         frame.getContentPane().add(textBoxPanel);
         frame.setLocation(890,0);
@@ -52,4 +48,5 @@ public class BorrowWindow {
     public void kill(){
         frame.dispose();
     }
+
 }

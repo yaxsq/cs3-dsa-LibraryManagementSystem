@@ -39,6 +39,7 @@ public class Library {
         updateLeastPopular();
 
     }
+
     public static Library getInstance() {
         if (instance == null) {
             instance = new Library();
@@ -121,6 +122,7 @@ public class Library {
 
     /**
      * Reads customers text file and populates customers hashmap
+     *
      * @ NEED TO FIX
      * NOT ALL CUSTOMERS ARE BEING ADDED
      */
@@ -136,8 +138,8 @@ public class Library {
 
                     // Adding Customers to customers HashMap
                     // Key made using customers name+ID
-                    Customer customer = new Customer(customerElements[0],Integer.parseInt(customerElements[1]));
-                    customers.put((customerElements[0]+customerElements[1]),customer);
+                    Customer customer = new Customer(customerElements[0], Integer.parseInt(customerElements[1]));
+                    customers.put((customerElements[0] + customerElements[1]), customer);
 
 
                 }
@@ -222,9 +224,11 @@ public class Library {
         // @ Qamar = adding book to popularity
         popularity.add(book);
 
-        System.out.println("Library/addBooks()  added >" + book.toString());
+       /* System.out.println("Library/addBooks()  added >" + book.toString());
         System.out.println("Library/addBooks()  TITLE >" + getBook(book.getTitle()).getTitle());
         System.out.println("Library/addBooks()  TITLE GENRE >" + genreList[Objects.requireNonNull(getGenre(genre)).getValue()].get(genreList[getGenre(genre).getValue()].size() - 1));
+
+        */
 //        }
 
         // For the addition by popularity the Heaptree and the review addition needs to be done first. This as lazy as I am, will leave to you guys.:D
@@ -406,6 +410,18 @@ public class Library {
 //        return books.get(calculateKey(title));
         return books.get(title);
     }
+
+    public Customer getCustomer(String name, String id) {
+        for (Customer customer : customers.values()) {
+            if ((customer.getName() + customer.getID()).hashCode() == (name + id).hashCode()) {
+                System.out.println(customer);
+                return customer;
+            }
+        }
+
+        return null;
+    }
+
 
     public Book[] getLatestBooks() {
         return latestList;
