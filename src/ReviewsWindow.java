@@ -6,30 +6,37 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ReviewsWindow {
-    JFrame frame;
-    JPanel mainPanel;
-    JPanel scrollPanel;
-    Book book;
+
+    private JFrame frame;
+    private JPanel mainPanel;
+    private JPanel scrollPanel;
+    private Book book;
+
+    public static final int width = 500;
+    public static final int height = 300;
+    public static final int xCoord = Frame.width;
+    public static final int yCoord = DetailsWindow.height;
+
     public ReviewsWindow(Book book) {
         this.book = book;
-        System.out.println("From Review WIndow");
+        System.out.println("From Review Window");
 
         initializeFrame();
         initializeScrollPanel();
-        //adding mainPanel to frame
+
+        // adding mainPanel to frame
         frame.getContentPane().add(mainPanel);
     }
 
     private void initializeFrame(){
         // Frame Settings
-        ImageIcon icon = new ImageIcon("src/PNGS/book.png");
-        frame = new JFrame("Details");
+        ImageIcon icon = new ImageIcon("src/PNGS/reviews.png");
+        frame = new JFrame("Reviews");
 
         // This code is not necessary, but it makes it so that reviews and borrow windows close when the details window is closed
-
         frame.setIconImage(icon.getImage());
-        frame.setLocation(400,100);
-        frame.setSize(500, 300);
+        frame.setLocation(xCoord,yCoord);
+        frame.setSize(width, height);
         frame.setVisible(true);
 
         // Creating Main panel that has border layout

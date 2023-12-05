@@ -2,27 +2,32 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BorrowWindow {
-    JFrame frame;
-    JPanel textBoxPanel;
-    public BorrowWindow() {
+    private JFrame frame;
+    private JPanel textBoxPanel;
 
+    private static final int width = 350;
+    private static final int height = 200;
+    private static final int xCoord = ((Frame.xCoord + DetailsWindow.width + Frame.width) / 2) - width/2;
+    private static final int yCoord = ((Frame.yCoord + ReviewsWindow.yCoord + ReviewsWindow.height) / 2) - height/2;
+
+    public BorrowWindow() {
         initializeFrame();
         initializeTextBoxPanel();
 
         frame.getContentPane().add(textBoxPanel);
-        frame.setLocation(890,0);
-        frame.setSize(350, 200);
+        frame.setLocation(xCoord, yCoord);
+        frame.setSize(width, height);
         frame.setVisible(true);
     }
 
-    private void initializeFrame(){
+    private void initializeFrame() {
         frame = new JFrame("BlockChain");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("src/PNGS/diamonds.png");
+        ImageIcon icon = new ImageIcon("src/PNGS/diamond.png");
         frame.setIconImage(icon.getImage());
     }
 
-    private void initializeTextBoxPanel(){
+    private void initializeTextBoxPanel() {
         // Create a panel with GridLayout
         textBoxPanel = new JPanel((new GridLayout(3, 2, 5, 5)));
 
@@ -42,10 +47,9 @@ public class BorrowWindow {
         textBoxPanel.add(phoneField);
         textBoxPanel.add(emailLabel);
         textBoxPanel.add(emailField);
-
-
     }
-    public void kill(){
+
+    public void kill() {
         frame.dispose();
     }
 

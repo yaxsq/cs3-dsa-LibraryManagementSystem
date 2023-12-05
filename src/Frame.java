@@ -8,21 +8,28 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
 
     private JButton search, submit;
     private JButton logoutButton = new JButton("Confirm");
-    private JToggleButton title, author, genre, mostPopular, leastPopular, latest, login;
+    private JToggleButton title;
+    private JToggleButton genre;
+    private JToggleButton mostPopular;
+    private JToggleButton leastPopular;
+    private JToggleButton latest;
+    private JToggleButton login;
     private ButtonGroup buttonGroup;
     private JTextField searchBar, nameField, passwordField;
     private JLabel errorMessage = new JLabel("The username or Password is incorrect");
     private boolean loggedIn = false;
     JPanel loginPanel;
-
     private JScrollPane scrollPane;
-
     private DetailsWindow detailsWindow;
-
     private JWindow loginWindow = new JWindow(this);
     private JWindow logoutWindow = new JWindow(this);
-
+    private JComboBox<String> genreMenu;
     private JList jList;
+
+    public static final int xCoord = 0;
+    public static final int yCoord = 0;
+    public static final int width = 900;
+    public static final int height = 600;
 
     private int toggleX = 10;
     private int toggleY = 45;
@@ -36,12 +43,11 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
     Frame() {
         this.setTitle("Library Management System");
         this.setVisible(true);
-        this.setSize(900, 600);
+        this.setSize(width, height);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         errorMessage.setBounds(70, 180, 300, 20);
-
 
         library = Library.getInstance();
         ImageIcon icon = new ImageIcon("src/PNGS/icon.png");
@@ -51,6 +57,15 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         addElements();
     }
 
+//    public static void main(String[] args) {
+//        String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+//
+//        System.out.println("Available Fonts:");
+//        for (String font : fonts) {
+//            System.out.println(font);
+//        }
+//    }
+
     private void addElements() {
         addButtons();
 
@@ -59,12 +74,16 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         searchBar.setVisible(true);
         this.add(searchBar);
 
+//        JTextArea textArea = new JTextArea();
+//        textArea.setFont(new Font("Calibri", Font.PLAIN, 14));
+
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 80, 800, 500);
+        scrollPane.setBounds(10, 80, 800, 480);
         scrollPane.setVisible(true);
+        scrollPane.setFont(new Font("Impact", Font.PLAIN, 14));     /// PROBLEM ERROR doesnt work
         this.add(scrollPane);
 
-        ImageIcon ii = new ImageIcon();      /////////////////// temp
+        ImageIcon ii = new ImageIcon();      /////////////////// temp ISSUE PROBLEM ERROR
         JLabel jlab = new JLabel(ii);
         jlab.setBounds(300, 300, 500, 500);
         jlab.setVisible(true);
@@ -90,18 +109,26 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         title.setText("Title");
         setTButtonProperties(title);
 
-        author = new JToggleButton();
-        author.setBounds(toggleX + title.getX() + title.getWidth(), toggleY, toggleWidth, toggleHeight);
-        author.setText("Author");
-        setTButtonProperties(author);
-
+//        author = new JToggleButton();
+//        author.setBounds(toggleX + title.getX() + title.getWidth(), toggleY, toggleWidth, toggleHeight);
+//        author.setText("Author");
+//        setTButtonProperties(author);
+//        author.setVisible(false);
+//
         genre = new JToggleButton();
-        genre.setBounds(toggleX + author.getX() + author.getWidth(), toggleY, toggleWidth, toggleHeight);
+        genre.setBounds(toggleX + title.getX() + title.getWidth(), toggleY, toggleWidth, toggleHeight);
+//        genre.setBounds(toggleX + author.getX() + author.getWidth(), toggleY, toggleWidth, toggleHeight);
         genre.setText("Genre");
         setTButtonProperties(genre);
 
+        String[] genres = {"Science Fiction", "Fantasy", "Mystery", "Thriller", "Historical Fiction", "Horror", "Biography", "Self Help", "Romance", "Young Adult"};
+        genreMenu = new JComboBox<>(genres);
+        genreMenu.setBounds(toggleX + genre.getX() + genre.getWidth(), toggleY, toggleWidth, toggleHeight);
+        genreMenu.setToolTipText("Genres");
+        this.add(genreMenu);
+
         latest = new JToggleButton();
-        latest.setBounds(toggleX + genre.getX() + genre.getWidth(), toggleY, toggleWidth, toggleHeight);
+        latest.setBounds(toggleX + genreMenu.getX() + genreMenu.getWidth(), toggleY, toggleWidth, toggleHeight);
         latest.setText("Latest");
         setTButtonProperties(latest);
 
@@ -116,24 +143,21 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         setTButtonProperties(leastPopular);
 
         login = new JToggleButton();
-        login.setBounds(810, 490, 85, 85);
-        login.setIcon(new ImageIcon("src/icon/Login.png"));
-        login.setText("Login");
+        login.setBounds(810, 490, (toggleWidth/2) + 5, toggleHeight);
+        login.setIcon(new ImageIcon("src/PNGS/Login.png"));
+        login.setText("Log\nIn");
         setTButtonProperties(login);
 
     }
 
     private void searchByTitle(String line) {
-
         Book[] books = new Book[1];
         books[0] = library.getBook(line);
 
         if (books[0] == null) {
-            return;
+            books = library.searchBook(line).toArray(new Book[0]);
         }
         populateScrollPane(books);
-
-
     }
 
     private void clearShowCasedBooks() {
@@ -141,8 +165,6 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
     }
 
     private void populateScrollPane(Book[] books) {
-
-
         DefaultListModel<Book> model = new DefaultListModel<>();
 
         // Populate the model with book information
@@ -176,7 +198,6 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         });
 
         scrollPane.setViewportView(jList);
-
     }
 
 
@@ -202,16 +223,20 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
             clearShowCasedBooks();
             searchByTitle(searchBar.getText());
             System.out.println(title.isSelected());
-            System.out.println(author.isSelected());
+//            System.out.println(author.isSelected());
 
-
-        } else if (author.equals(source)) {
-            closeLoginWindow();
-            clearShowCasedBooks();
+//        } else if (author.equals(source)) {
+//            closeLoginWindow();
+//            clearShowCasedBooks();
 
         } else if (genre.equals(source)) {
             closeLoginWindow();
-            populateScrollPane(library.getSortedByGenreBooks(Genre.Horror));
+//            populateScrollPane(library.getSortedByGenreBooks(Genre.Horror));
+
+            int genre = genreMenu.getSelectedIndex();
+            if (genre != -1 && genre == genreMenu.getSelectedIndex()) {
+                populateScrollPane(library.getGenreBooks(genre));
+            }
 
         } else if (latest.equals(source)) {
             closeLoginWindow();
@@ -225,8 +250,8 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         } else if (leastPopular.equals(source)) {
             closeLoginWindow();
             populateScrollPane(library.getLeastPopular());
-        } else if (author.equals(source)) {
-            closeLoginWindow();
+//        } else if (author.equals(source)) {
+//            closeLoginWindow();
         } else if (login.equals(source)) {
             if (loggedInAs == null) {
 
@@ -264,8 +289,6 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
             loginWindow=new JWindow(this);
             loginPanel=new JPanel();
         }
-
-
     }
 
     public void openLogoutWindow() {

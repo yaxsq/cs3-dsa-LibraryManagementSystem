@@ -324,6 +324,24 @@ public class Library {
     }
 
     /**
+     * goes through all the books stored to get books containing the parameter
+     * @param title
+     * @return arraylist of books containing the paramter in their title
+     */
+    public ArrayList<Book> searchBook(String title) {
+        ArrayList<Book> search = new ArrayList<>();
+
+        for (int i = 0; i < genreList.length; i++) {
+            for (int j = 0; j < genreList[i].size(); j++) {
+                if (genreList[i].get(j).getTitle().contains(title)) {
+                    search.add(genreList[i].get(j));
+                }
+            }
+        }
+        return search;
+    }
+
+    /**
      * checks if the pubDate input is latest i.e. 2002 or newer
      *
      * @param pubDate
@@ -376,6 +394,10 @@ public class Library {
         }
 
         return sortedBooks;
+    }
+
+    public Book[] getGenreBooks(int genre) {
+        return genreList[genre].toArray(new Book[0]);
     }
 
     private Genre getGenre(String genre) {

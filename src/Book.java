@@ -129,12 +129,14 @@ class Book {
         for (int i = 0; i < transactions.size(); i++) {
             System.out.println(transactions.get(i).getTransactions());
         }
-
     }
 
     @Override
     public String toString() {
-        return ">> " + isbn + " > " + title + " > " + author + " > " + pubDate + " > " + publisher + " > " + getGenre() + reviews + " > " + getReviewRating() + "<<";
+        // Reviews not returned
+//        return "" + isbn + ", " + title + ", " + author + ", " + pubDate + ", " + publisher + ", " + getGenre() + reviews + ", " + getReviewRating() + "";
+//        return "" + isbn + ", " + title + ", " + author + ", " + pubDate + ", " + publisher + ", " + getGenre() + ", " + getReviewRating() + "";
+        return title + "  -  " + author;
     }
 
     public String toString(int i) {
