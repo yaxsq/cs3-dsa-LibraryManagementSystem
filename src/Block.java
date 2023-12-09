@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Block {
     private String transactions;
@@ -8,14 +9,14 @@ public class Block {
     public Block(String transactions, int previousHashCode) {
         this.transactions = transactions;
         this.previousBlockHash = previousHashCode;
-        this.blockHash = Arrays.hashCode(new int[]{transactions.hashCode(), this.previousBlockHash});
+        this.blockHash = calculateHash();
     }
 
     public String getTransactions() {
         return transactions;
     }
 
-    public int getBlockHash() {
+    public int getHash() {
         return blockHash;
     }
 
@@ -23,4 +24,16 @@ public class Block {
         return previousBlockHash;
     }
 
+    public int calculateHash() {
+        return Objects.hash(transactions, previousBlockHash);
+    }
+
+    @Override
+    public String toString() {
+        return "Block{" +
+                "transactions='" + transactions + '\'' +
+                ", blockHash=" + blockHash +
+                ", previousBlockHash=" + previousBlockHash +
+                '}';
+    }
 }

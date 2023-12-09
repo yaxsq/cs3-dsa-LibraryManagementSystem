@@ -88,8 +88,8 @@ class Book {
         addReview(new Review(review, rating));
     }
 
-    public void isBorrowed() {
-        System.out.println(this.title + " > " + borrowed);
+    public boolean isBorrowed() {
+        return borrowed;
     }
 
     public String getISBN() {
@@ -141,5 +141,9 @@ class Book {
 
     public String toString(int i) {
         return ">> " + isbn + " > " + title + " > " + author + " > " + pubDate + " > " + publisher + " > " + getGenre() + " > " + getReviewRating() + "<<";
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        this.borrowed = borrowed;
     }
 }

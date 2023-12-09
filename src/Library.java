@@ -20,6 +20,8 @@ public class Library {
     private ArrayList<Review> randomReviews;
     private ArrayList<Block> transactions = new ArrayList<Block>();
 
+    private BlockChain chain;
+
     /**
      * genre is an array of arraylists
      * each index corresponds to a specific genre
@@ -33,11 +35,16 @@ public class Library {
         populateBooks();
         populateCustomers();
 
+
         //@ Qamar = this fills the most popular and least popular array
         // these 2 can be placed in addBooks method as well
         updateMostPopular();
         updateLeastPopular();
 
+    }
+
+    public BlockChain getChain() {
+        return chain;
     }
 
     public static Library getInstance() {

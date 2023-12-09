@@ -21,6 +21,12 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+firstIteration.zip
+secondIteration.zip
+forthIteration.zip
+GUIStart.zip
+src.7z
+trimmed.txt
 
 ### VS Code ###
 .vscode/

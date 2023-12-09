@@ -10,12 +10,14 @@ public class DetailsWindow {
     private Book book;
     private JFrame frame;
 
-    private BorrowWindow borrowWindow;
+
     private JPanel mainPanel;
     private ReviewsWindow reviewsWindow;
     private JPanel scrollPanel;
-    private JButton borrowButton;
+    public JButton borrowButton;
     private JButton reviewButton;
+
+
 
     public static final int xCoord = 900;
     public static final int yCoord = 0;
@@ -47,9 +49,6 @@ public class DetailsWindow {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (borrowWindow != null) {
-                    borrowWindow.kill();
-                }
                 if (reviewsWindow != null) {
                     reviewsWindow.kill();
                 }
@@ -124,15 +123,6 @@ public class DetailsWindow {
     private void initializeButtons() {
         borrowButton = new JButton("Borrow");
 
-        borrowButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (borrowWindow == null) {
-                    borrowWindow = new BorrowWindow();
-                }
-
-            }
-        });
 
         reviewButton = new JButton("Review");
         reviewButton.addActionListener(new ActionListener() {
@@ -169,6 +159,11 @@ public class DetailsWindow {
 
 
     // Hearts method determine how many hearts to represent the rating
+
+    public void addPanel(JPanel panel) {
+        frame.add(panel);
+    }
+
     private int determineFullHearts() {
         double rating = book.getReviewRating();
         return (int) rating;
@@ -180,9 +175,6 @@ public class DetailsWindow {
     }
 
     public void kill() {
-        if (borrowWindow != null) {
-            borrowWindow.kill();
-        }
         frame.dispose();
     }
 
