@@ -57,8 +57,8 @@ public class Library {
         customers = new Hashtable<>();
         genreList = new ArrayList[10];
         latestList = new Book[15];
-        mostPopularity = new Book[10];
-        leastPopularity = new Book[10];
+        mostPopularity = new Book[25];
+        leastPopularity = new Book[25];
         randomReviews = new ArrayList<>();
         //@ Qamar =  To convert the TreeSet into a MaxHeap we need a comparator
         // reversing a TreeSet creates a Max HeapTree(I think)
@@ -145,8 +145,6 @@ public class Library {
                     // Key made using customers name+ID
                     Customer customer = new Customer(customerElements[0], Integer.parseInt(customerElements[1]));
                     customers.put((customerElements[0] + customerElements[1]), customer);
-
-
                 }
             }
 
@@ -279,7 +277,9 @@ public class Library {
     private void updateMostPopular() {
         int index = 0;
         for (Book book : popularity) {
-            mostPopularity[index++] = book;
+            if (book.getReviewRating() > 0) {
+                mostPopularity[index++] = book;
+            }
 
             if (index == mostPopularity.length) {
                 break;
