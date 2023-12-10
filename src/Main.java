@@ -4,8 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-       setUpUI();
-       BlockChain.readChain();
+        setUpUI();
+        Library library = Library.getInstance();
+
+//       BlockChain.readChain();
 
 //        Library library = new Library();
 //           printBookArray(library.getLatestBooks());
@@ -28,8 +30,6 @@ public class Main {
 //        chain.addReturnTransaction(customer,"Scarlet Letter");
 //        chain.addReturnTransaction(customer,"dasdasd");
 //        System.out.println(customer.getBorrowedBooks());
-
-        Library library = Library.getInstance();
 
 //        printBookArray(library.getLatestBooks());
 

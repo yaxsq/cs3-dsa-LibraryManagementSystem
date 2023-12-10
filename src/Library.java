@@ -5,9 +5,9 @@ import java.util.*;
 public class Library {
 
     private static Library instance;
+
     private Hashtable<String, Book> books;
     private Book[] latestList;
-
     private Book[] mostPopularity;
     private Book[] leastPopularity;
     private ArrayList<Book>[] genreList;            // 0-9 index where each is a genre. Genre is an enum
@@ -19,7 +19,6 @@ public class Library {
 
     private ArrayList<Review> randomReviews;
     private ArrayList<Block> transactions = new ArrayList<Block>();
-
     private BlockChain chain;
 
     /**
@@ -34,7 +33,6 @@ public class Library {
         populateRandomReviews();
         populateBooks();
         populateCustomers();
-
 
         //@ Qamar = this fills the most popular and least popular array
         // these 2 can be placed in addBooks method as well
@@ -332,6 +330,7 @@ public class Library {
 
     /**
      * goes through all the books stored to get books containing the parameter
+     *
      * @param title
      * @return arraylist of books containing the paramter in their title
      */
@@ -401,6 +400,19 @@ public class Library {
         }
 
         return sortedBooks;
+    }
+
+    /**
+     * @return array of 25 random books
+     */
+    public Book[] getRandomBooks() {
+        Book[] books = new Book[25];
+        for (int i = 0; i < books.length; i++) {
+            int genre = (int) (Math.random() * genreList.length);         // random genre
+            books[i] = genreList[genre].get((int) (Math.random() * genreList[genre].size()));
+        }
+
+        return books;
     }
 
     public Book[] getGenreBooks(int genre) {

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="updated window coordinates&#10;fixed searching by title&#10;- author&#10;+ genre drop down">
-      <change afterPath="$PROJECT_DIR$/DS_Project_3.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trimmed.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="small fixes">
+      <change afterPath="$PROJECT_DIR$/chain.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chain.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PNGS/diamonds.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/icon/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/customers.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +183,35 @@
       <option name="project" value="LOCAL" />
       <updated>1701785329051</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="+ borrow integration in UI&#10;+ check borrowed books in UI&#10;+ blockchain/transaction history view in UI">
+      <created>1702142432828</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702142432828</updated>
+    </task>
+    <task id="LOCAL-00014" summary="+ book data&#10;tried to save blockchain as xml but failed">
+      <created>1702230061840</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1702230061840</updated>
+    </task>
+    <task id="LOCAL-00015" summary="small fixes">
+      <created>1702230309640</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1702230309640</updated>
+    </task>
+    <task id="LOCAL-00016" summary="small fixes">
+      <created>1702230820188</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1702230820188</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,9 +238,46 @@
     <MESSAGE value="started ui&#10;login/logout system&#10;searching and sorting books" />
     <MESSAGE value="mudasir and qamar's updates&#10;+ review details&#10;+ borrow window&#10;+ icons" />
     <MESSAGE value="updated window coordinates&#10;fixed searching by title&#10;- author&#10;+ genre drop down" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated window coordinates&#10;fixed searching by title&#10;- author&#10;+ genre drop down" />
+    <MESSAGE value="+ borrow integration in UI&#10;+ check borrowed books in UI&#10;+ blockchain/transaction history view in UI" />
+    <MESSAGE value="+ book data&#10;tried to save blockchain as xml but failed" />
+    <MESSAGE value="small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fixes" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BlockChain.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="library.popularity.toArray()[1]" />

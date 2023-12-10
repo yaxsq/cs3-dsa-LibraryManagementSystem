@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Frame extends JFrame implements ActionListener, MouseListener {
 
-    private JButton search, submit;
+    private JButton surprise, submit;
     private Timer successTimer;
     private JToggleButton showTransactionsButton;
     private JPanel transactionPanel;
@@ -40,7 +40,8 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
     public static final int yCoord = 0;
     public static final int width = 900;
     public static final int height = 600;
-    private ImageIcon loginPNG = new ImageIcon(new ImageIcon("src/PNGS/Login.png").getImage().getScaledInstance(30, 25, Image.SCALE_DEFAULT));
+    private ImageIcon loginPNG;
+    private ImageIcon logoutPNG;
 
     private int toggleX = 10;
     private int toggleY = 45;
@@ -65,6 +66,8 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         library = chain.getLibrary();
 
         ImageIcon icon = new ImageIcon("src/PNGS/icon.png");
+        loginPNG =  new ImageIcon(new ImageIcon("src/PNGS/Login.png").getImage().getScaledInstance(30, 25, Image.SCALE_DEFAULT));
+        logoutPNG = new ImageIcon(new ImageIcon("src/PNGS/Logout.png").getImage().getScaledInstance(30, 25, Image.SCALE_DEFAULT));
         this.setIconImage(icon.getImage());
 //        this.getContentPane().setBackground(new Color(184, 149, 96));
 
@@ -111,12 +114,12 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
     }
 
     private void addButtons() {
-        search = new JButton();
-        search.setBounds(750, 10, 120, 30);
-        search.setText("Search");
-        search.setFocusable(false);
-        search.addActionListener(this);
-        this.add(search);
+        surprise = new JButton();
+        surprise.setBounds(750, 10, 120, toggleHeight);
+        surprise.setText("Surprise Me!");
+        surprise.setFocusable(false);
+        surprise.addActionListener(this);
+        this.add(surprise);
 
         buttonGroup = new ButtonGroup();
 
@@ -180,8 +183,8 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         setTButtonProperties(login);
 
         borrowedBooksHistory = new JToggleButton();
-        borrowedBooksHistory.setBounds(810, 390, (toggleWidth / 2) + 5, toggleHeight);
-        borrowedBooksHistory.setIcon(loginPNG);
+        borrowedBooksHistory.setBounds(810, 450, (toggleWidth / 2) + 5, toggleHeight);
+        borrowedBooksHistory.setIcon(logoutPNG);
         borrowedBooksHistory.setText("Books");
         setTButtonProperties(borrowedBooksHistory);
 
@@ -259,7 +262,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
     private void addTransactionsButton() {
         showTransactionsButton = new JToggleButton();
         showTransactionsButton.setBounds(810, 340, (toggleWidth / 2) + 5, toggleHeight);
-        showTransactionsButton.setText("Transactions");
+        showTransactionsButton.setText("Chain");
         setTButtonProperties(showTransactionsButton);
 
         showTransactionsButton.addActionListener(new ActionListener() {
@@ -416,12 +419,13 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         Object source = e.getSource();
         library = Library.getInstance();
 
-        if (search.equals(source)) {
+        if (surprise.equals(source)) {
             closeLoginWindow();
             closeLogoutWindow();
             closeBorrowMenu();
             clearShowCasedBooks();
-            searchByTitle(searchBar.getText());
+//            searchByTitle(searchBar.getText());
+            populateScrollPane(library.getRandomBooks());
             System.out.println(title.isSelected());
 
         } else if (title.equals(source)) {
