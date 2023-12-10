@@ -1,5 +1,7 @@
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 class BlockChain {
     private static BlockChain chain = null;
@@ -22,6 +24,10 @@ class BlockChain {
         return chain;
     }
 
+    private static void setChain(BlockChain chain) {
+        BlockChain.chain = chain;
+    }
+
     public void addBorrowTransaction(Customer customer, Book book) {
         // Need to implement a GetCustomer function in library which checks if the customer really does exist
        /* Customer searchCustomer = library.getCustomer(book.getCustomerCode());
@@ -34,7 +40,7 @@ class BlockChain {
             System.out.println("Book not found");
             return;
         }
-        if(searchBook.isBorrowed()){
+        if (searchBook.isBorrowed()) {
             return;
         }
         if (blockChain.size() == 0) {
@@ -50,6 +56,7 @@ class BlockChain {
 
         searchBook.borrowBook(customer);
         searchBook.printTransactions();
+        writeChain();
     }
 
     public void addReturnTransaction(Customer customer, String title) {
@@ -73,7 +80,10 @@ class BlockChain {
                 borrowedBooks.remove(i);
             }
         }
+
+        writeChain();
     }
+
     public String isChainValid() {
         for (int i = 1; i < blockChain.size(); i++) {
             Block currentBlock = blockChain.get(i);
@@ -93,6 +103,42 @@ class BlockChain {
         return "Blockchain is valid.";
     }
 
+    public void writeChain() {
+        try {
+//            FileOutputStream file = new FileOutputStream("src/chain.ser");
+//            ObjectOutputStream out = new ObjectOutputStream(file);
+//            out.writeObject(getChain());
+//            out.close();
+//            file.close();
+            XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("src/" + "blockchain.txt")));
+            encoder.writeObject(BlockChain.getChain());
+            encoder.close();
+            System.out.println("writeChain()    Chain updated");
+        } catch (IOException ex) {
+            System.out.println("writeChain()    File not found");
+        }
+    }
+
+    public static void readChain() {
+        try {
+//            FileInputStream file = new FileInputStream("src/chain.ser");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//            setChain((BlockChain) in.readObject());
+//            in.close();
+//            file.close();
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("ants.xml")));
+            setChain((BlockChain) decoder.readObject());
+            decoder.close();
+            System.out.println("readChain()     Chain updated");
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("readChain()    File not found");
+        } catch (IOException e) {
+            System.out.println("readChain()    File not found");
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("readChain()    Chain not found");
+        }
+    }
 
     public Library getLibrary() {
         return library;
