@@ -7,7 +7,7 @@ public class Main {
         setUpUI();
         Library library = Library.getInstance();
 
-//       BlockChain.readChain();
+       BlockChain.readChain();
 
 //        Library library = new Library();
 //           printBookArray(library.getLatestBooks());

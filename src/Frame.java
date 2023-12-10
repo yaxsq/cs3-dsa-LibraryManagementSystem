@@ -452,7 +452,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
             closeLoginWindow();
             closeLogoutWindow();
             closeBorrowMenu();
-            populateScrollPane(library.getLatestBooks());
+            populateScrollPane(library.getLatestBookList());
             System.out.println("Latest");
 
         } else if (mostPopular.equals(source)) {

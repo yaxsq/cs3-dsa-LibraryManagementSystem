@@ -8,6 +8,7 @@ public class Library {
 
     private Hashtable<String, Book> books;
     private Book[] latestList;
+    private int latestDeleted;
     private Book[] mostPopularity;
     private Book[] leastPopularity;
     private ArrayList<Book>[] genreList;            // 0-9 index where each is a genre. Genre is an enum
@@ -16,7 +17,6 @@ public class Library {
     // Also TreeSet allows us to reverse in O(n) hence we don't need 2 separate Data Structure for most and least popular
     private TreeSet<Book> popularity;
     public Hashtable<String, Customer> customers;
-
     private ArrayList<Review> randomReviews;
     private ArrayList<Block> transactions = new ArrayList<Block>();
     private BlockChain chain;
@@ -56,7 +56,8 @@ public class Library {
         books = new Hashtable<>();
         customers = new Hashtable<>();
         genreList = new ArrayList[10];
-        latestList = new Book[15];
+        latestList = new Book[30];
+        latestDeleted = 0;
         mostPopularity = new Book[25];
         leastPopularity = new Book[25];
         randomReviews = new ArrayList<>();
@@ -245,6 +246,7 @@ public class Library {
         popularity.remove(title);
 //        books.remove(calculateKey(title));
         books.remove(title);
+        latestDeleted++;
         updateLatest();
         updatePopularLists();
     }
@@ -312,18 +314,23 @@ public class Library {
      * if a null entry is found, the node is updated to a new latest book
      */
     private void updateLatest() {
-        for (int i = 0; i < latestList.length; i++) {
-            if (latestList[i] == null) {
-                while (true) {
-                    int randomGenre = (int) (Math.random() * 10);
-                    int genreLength = genreList[randomGenre].size();
-                    Book randomBook = genreList[randomGenre].get((int) (Math.random() * genreLength));
-                    if (isLatest(randomBook.getPubDate())) {
-                        latestList[i] = randomBook;
-                        return;
+        if (latestDeleted > 5) {
+            for (int i = 0; i < latestList.length; i++) {
+                if (latestList[i] == null) {
+                    while (true) {
+                        int randomGenre = (int) (Math.random() * 10);
+                        int genreLength = genreList[randomGenre].size();
+                        Book randomBook = genreList[randomGenre].get((int) (Math.random() * genreLength));
+                        if (isLatest(randomBook.getPubDate())) {
+                            latestList[i] = randomBook;
+                            latestDeleted--;
+                            return;
+                        }
                     }
                 }
             }
+        } else {
+            // We have room to not update the list
         }
 
     }
@@ -463,6 +470,22 @@ public class Library {
         return null;
     }
 
+    /**
+     * @return 25 books to display in Frame
+     */
+    public Book[] getLatestBookList() {
+        Book[] temp = new Book[25];
+
+        for (int i = 0; i < latestList.length; i++) {
+            if (latestList[i] != null) {
+                temp[i] = latestList[i];
+            }
+            if (temp[temp.length-1] != null) {
+                break;
+            }
+        }
+        return temp;
+    }
 
     public Book[] getLatestBooks() {
         return latestList;

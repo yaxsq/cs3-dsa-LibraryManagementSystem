@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="small fixes">
-      <change afterPath="$PROJECT_DIR$/chain.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chain.ser" afterDir="false" />
+    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="added ALL books 200k+">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockChain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/customers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockchain.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockchain.XML" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +210,28 @@
       <option name="project" value="LOCAL" />
       <updated>1702230820188</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added surprise button">
+      <created>1702238186958</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1702238186958</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixed books with no rating appearing in most pop list">
+      <created>1702238393258</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1702238393258</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added ALL books 200k+">
+      <created>1702238524142</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1702238524142</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -241,7 +261,10 @@
     <MESSAGE value="+ borrow integration in UI&#10;+ check borrowed books in UI&#10;+ blockchain/transaction history view in UI" />
     <MESSAGE value="+ book data&#10;tried to save blockchain as xml but failed" />
     <MESSAGE value="small fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fixes" />
+    <MESSAGE value="added surprise button" />
+    <MESSAGE value="fixed books with no rating appearing in most pop list" />
+    <MESSAGE value="added ALL books 200k+" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ALL books 200k+" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
