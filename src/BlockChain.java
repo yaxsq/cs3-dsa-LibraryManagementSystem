@@ -110,7 +110,7 @@ class BlockChain {
 //            out.writeObject(getChain());
 //            out.close();
 //            file.close();
-            XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("src/" + "blockchain.txt")));
+            XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("src/blockchain.XML")));
             encoder.writeObject(BlockChain.getChain());
             encoder.close();
             System.out.println("writeChain()    Chain updated");
@@ -126,7 +126,7 @@ class BlockChain {
 //            setChain((BlockChain) in.readObject());
 //            in.close();
 //            file.close();
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("blockchain.txt")));
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("src/blockchain.XML")));
             setChain((BlockChain) decoder.readObject());
             decoder.close();
             System.out.println("readChain()     Chain updated");
