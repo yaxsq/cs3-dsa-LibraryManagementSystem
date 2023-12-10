@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
        setUpUI();
+       BlockChain.readChain();
 
-        // FYI: we have 250 books in books.txt but only ~221 dont have a ", " so we're actually working with 221 books right now
 //        Library library = new Library();
 //           printBookArray(library.getLatestBooks());
 //
@@ -33,8 +33,8 @@ public class Main {
 
 //        printBookArray(library.getLatestBooks());
 
-        Book wildAnimus = library.getBook("Wild Animus");
-        wildAnimus.isBorrowed();
+//        Book wildAnimus = library.getBook("Wild Animus");
+//        wildAnimus.isBorrowed();
 
     }
 

@@ -126,7 +126,7 @@ class BlockChain {
 //            setChain((BlockChain) in.readObject());
 //            in.close();
 //            file.close();
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("ants.xml")));
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("blockchain.txt")));
             setChain((BlockChain) decoder.readObject());
             decoder.close();
             System.out.println("readChain()     Chain updated");
