@@ -168,7 +168,7 @@ public class Library {
         if (attributes.length == 6) {
             addBook(attributes[0], attributes[1], attributes[2], attributes[3], attributes[4], attributes[5]);
         } else {
-            System.out.println("Library/addBook()        Invalid array");
+//            System.out.println("Library/addBook()        Invalid array");
         }
     }
 
