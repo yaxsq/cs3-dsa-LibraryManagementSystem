@@ -115,7 +115,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
 
     private void addButtons() {
         surprise = new JButton();
-        surprise.setBounds(750, 10, 120, toggleHeight);
+        surprise.setBounds(750, 10, toggleWidth, toggleHeight);
         surprise.setText("Surprise Me!");
         surprise.setFocusable(false);
         surprise.addActionListener(this);
@@ -189,6 +189,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         setTButtonProperties(borrowedBooksHistory);
 
 
+        surprise.setBounds(leastPopular.getX(), 12, toggleWidth, toggleHeight);
     }
 
     private void searchByTitle(String line) {
@@ -419,88 +420,92 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
         Object source = e.getSource();
         library = Library.getInstance();
 
-        if (surprise.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
-            clearShowCasedBooks();
+        try {
+            if (surprise.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
+                clearShowCasedBooks();
 //            searchByTitle(searchBar.getText());
-            populateScrollPane(library.getRandomBooks());
-            System.out.println(title.isSelected());
+                populateScrollPane(library.getRandomBooks());
+                System.out.println(title.isSelected());
 
-        } else if (title.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
-            clearShowCasedBooks();
-            searchByTitle(searchBar.getText());
-            System.out.println(title.isSelected());
+            } else if (title.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
+                clearShowCasedBooks();
+                searchByTitle(searchBar.getText());
+                System.out.println(title.isSelected());
 //            System.out.println(author.isSelected());
 
 //        } else if (author.equals(source)) {
 //            closeLoginWindow();
 //            clearShowCasedBooks();
 
-        } else if (genre.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
+            } else if (genre.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
 //            populateScrollPane(library.getSortedByGenreBooks(Genre.Horror));
-            genreMenu.setPopupVisible(true);
+                genreMenu.setPopupVisible(true);
 
-        } else if (latest.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
-            populateScrollPane(library.getLatestBookList());
-            System.out.println("Latest");
+            } else if (latest.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
+                populateScrollPane(library.getLatestBookList());
+                System.out.println("Latest");
 
-        } else if (mostPopular.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
-            populateScrollPane(library.getMostPopular());
-            System.out.println("MOST POP");
-        } else if (leastPopular.equals(source)) {
-            closeLoginWindow();
-            closeLogoutWindow();
-            closeBorrowMenu();
-            populateScrollPane(library.getLeastPopular());
+            } else if (mostPopular.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
+                populateScrollPane(library.getMostPopular());
+                System.out.println("MOST POP");
+            } else if (leastPopular.equals(source)) {
+                closeLoginWindow();
+                closeLogoutWindow();
+                closeBorrowMenu();
+                populateScrollPane(library.getLeastPopular());
 //        } else if (author.equals(source)) {
 //            closeLoginWindow();
-        } else if (login.equals(source)) {
-            if (loggedInAs == null) {
+            } else if (login.equals(source)) {
+                if (loggedInAs == null) {
 
-                openLoginWindow();
-            } else {
-                openLogoutWindow();
-            }
+                    openLoginWindow();
+                } else {
+                    openLogoutWindow();
+                }
 
-        } else if (borrowedBooksHistory.equals(source)) {
-            if (loggedInAs != null) {
-                profileWindow = new ProfileWindow(loggedInAs);
-            }
+            } else if (borrowedBooksHistory.equals(source)) {
+                if (loggedInAs != null) {
+                    profileWindow = new ProfileWindow(loggedInAs);
+                }
 
-        } else if (submit.equals(source)) {
-            System.out.println("Works");
-            loggedInAs = library.getCustomer(nameField.getText(), passwordField.getText());
-            System.out.println(nameField.getText() + " " + passwordField.getText());
-            if ((loggedInAs == null)) {
-                System.out.println("Its working");
-                loginPanel.add(errorMessage);
-                loginWindow.repaint();
-            } else {
-                System.out.println("Successfully logged in");
-                this.setTitle("Library Management System: " + loggedInAs.getName());
-                login.setText("Logout");
-                closeLoginWindow();
+            } else if (submit.equals(source)) {
+//            System.out.println("Works");
+                loggedInAs = library.getCustomer(nameField.getText(), passwordField.getText());
+                System.out.println(nameField.getText() + " " + passwordField.getText());
+                if ((loggedInAs == null)) {
+//                System.out.println("Its working");
+                    loginPanel.add(errorMessage);
+                    loginWindow.repaint();
+                } else {
+                    System.out.println("Successfully logged in");
+                    this.setTitle("Library Management System: " + loggedInAs.getName());
+                    login.setText("Logout");
+                    closeLoginWindow();
+                }
+            } else if (logoutButton.equals(source)) {
+                System.out.println("works");
+                login.setText("Login");
+                loggedInAs = null;
+                this.setTitle("Library Management System");
+                logoutWindow.setVisible(false);
+
             }
-        } else if (logoutButton.equals(source)) {
-            System.out.println("works");
-            login.setText("Login");
-            loggedInAs = null;
-            this.setTitle("Library Management System");
-            logoutWindow.setVisible(false);
+        } catch (NullPointerException ex) {
 
         }
     }

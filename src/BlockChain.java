@@ -56,7 +56,7 @@ class BlockChain {
 
         searchBook.borrowBook(customer);
         searchBook.printTransactions();
-        writeChain();
+//        writeChain();
     }
 
     public void addReturnTransaction(Customer customer, String title) {
@@ -81,7 +81,7 @@ class BlockChain {
             }
         }
 
-        writeChain();
+//        writeChain();
     }
 
     public String isChainValid() {

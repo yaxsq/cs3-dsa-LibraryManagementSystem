@@ -7,6 +7,7 @@ public class Library {
     private static Library instance;
 
     private Hashtable<String, Book> books;
+    private int bookCount;
     private Book[] latestList;
     private int latestDeleted;
     private Book[] mostPopularity;
@@ -33,12 +34,10 @@ public class Library {
         populateRandomReviews();
         populateBooks();
         populateCustomers();
-
-        //@ Qamar = this fills the most popular and least popular array
-        // these 2 can be placed in addBooks method as well
         updateMostPopular();
         updateLeastPopular();
 
+        System.out.println("Book count: " + bookCount);
     }
 
     public BlockChain getChain() {
@@ -54,6 +53,7 @@ public class Library {
 
     private void initializeLists() {
         books = new Hashtable<>();
+        bookCount = 0;
         customers = new Hashtable<>();
         genreList = new ArrayList[10];
         latestList = new Book[30];
@@ -175,6 +175,7 @@ public class Library {
      */
     public void addBook(String isbn, String title, String author, String pubDate, String publisher, String genre) {
         Book book = new Book(isbn, title, author, pubDate, publisher, getGenre(genre));
+        bookCount++;
 
         // adding to main storage
 //        books.putIfAbsent(calculateKey(title), book);
@@ -480,7 +481,7 @@ public class Library {
             if (latestList[i] != null) {
                 temp[i] = latestList[i];
             }
-            if (temp[temp.length-1] != null) {
+            if (temp[temp.length - 1] != null) {
                 break;
             }
         }
