@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="done with it">
+    <list default="true" id="847ee783-4e21-4002-a73e-073b4ea29b8b" name="Changes" comment="final changes">
+      <change afterPath="$PROJECT_DIR$/src/blockchain.XML" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/bookstemp.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702239461977</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="final changes">
+      <created>1702408906498</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1702408906498</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,7 +284,8 @@
     <MESSAGE value="added ALL books 200k+" />
     <MESSAGE value="changed latest books" />
     <MESSAGE value="done with it" />
-    <option name="LAST_COMMIT_MESSAGE" value="done with it" />
+    <MESSAGE value="final changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="final changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

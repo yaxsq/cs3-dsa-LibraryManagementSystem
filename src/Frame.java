@@ -428,7 +428,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
                 clearShowCasedBooks();
 //            searchByTitle(searchBar.getText());
                 populateScrollPane(library.getRandomBooks());
-                System.out.println(title.isSelected());
+//                System.out.println(title.isSelected());
 
             } else if (title.equals(source)) {
                 closeLoginWindow();
@@ -436,7 +436,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
                 closeBorrowMenu();
                 clearShowCasedBooks();
                 searchByTitle(searchBar.getText());
-                System.out.println(title.isSelected());
+//                System.out.println(title.isSelected());
 //            System.out.println(author.isSelected());
 
 //        } else if (author.equals(source)) {
@@ -455,14 +455,14 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
                 closeLogoutWindow();
                 closeBorrowMenu();
                 populateScrollPane(library.getLatestBookList());
-                System.out.println("Latest");
+//                System.out.println("Latest");
 
             } else if (mostPopular.equals(source)) {
                 closeLoginWindow();
                 closeLogoutWindow();
                 closeBorrowMenu();
                 populateScrollPane(library.getMostPopular());
-                System.out.println("MOST POP");
+//                System.out.println("MOST POP");
             } else if (leastPopular.equals(source)) {
                 closeLoginWindow();
                 closeLogoutWindow();
@@ -498,7 +498,7 @@ public class Frame extends JFrame implements ActionListener, MouseListener {
                     closeLoginWindow();
                 }
             } else if (logoutButton.equals(source)) {
-                System.out.println("works");
+//                System.out.println("works");
                 login.setText("Login");
                 loggedInAs = null;
                 this.setTitle("Library Management System");
