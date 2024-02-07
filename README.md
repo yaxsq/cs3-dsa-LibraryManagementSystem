@@ -2,9 +2,11 @@
 
 This is a project made for the Data Structures course by a total of four team members: Mudasir Javed, Qamar Raza, Abdul Rehman Nasir and myself. 
 
+[DEMO](https://www.youtube.com/watch?v=HDcN02dEskk)
+
 ## How to run?
 
-Just run the code...
+Just run the code. Main is located in Main Class.
 
 ## How does the blockchain work? 
 
